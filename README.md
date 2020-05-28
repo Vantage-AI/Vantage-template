@@ -1,1 +1,1 @@
-# vantage-template
+# Vantage-template
