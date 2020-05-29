@@ -1,7 +1,5 @@
 # {{cookiecutter.project_name}}
 
-# {{cookiecutter.project_name}}
-
 {{cookiecutter.project_name}} is a Python library for dealing with word pluralization.
 
 ## Installation
