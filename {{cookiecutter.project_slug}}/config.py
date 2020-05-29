@@ -31,13 +31,12 @@ class Config(metaclass=Singleton):
     """
     Class which contains our configuration. Once initialized, it cannot be changed, as it is a singleton.
     """
-    param1 : str
-    param2 : int
+    param1 : int
     data_path : str
 
     def __init__(
         self,
-        env: str = "DEVELOPNMENT",
+        env: str = "DEVELOPMENT",
         config_path: str = "./config.ini",
     ):
         """
