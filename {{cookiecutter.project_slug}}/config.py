@@ -35,18 +35,11 @@ class Config(metaclass=Singleton):
     param1 : str
     param2 : int
     project_path : str
-    data_folder: str
-
-    def __post_init__(self):
-        """
-        Checks if paths are specified correctly (i.e. absolute paths, and if needed builds up absolute paths)
-        """
 
     def __init__(
         self,
+        env: str = "DEVELOPNMENT",
         config_path: str = "./config.ini",
-        env: str = "PRODUCTION",
-        param1 = None
     ):
         """
         Initialize configuration object. Configuration is read in from the path specified by the config_path
@@ -59,8 +52,3 @@ class Config(metaclass=Singleton):
                 config.read(config_path)
                 for key in config[env]:
                     setattr(self, key, ast.literal_eval(config[env][key]))
-
-        if param1:
-            self.param1 = param1
-
-        self.__post_init__()

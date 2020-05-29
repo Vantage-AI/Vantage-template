@@ -3,5 +3,4 @@ from config import Config
 
 
 if __name__ == "__main__":
-    c = Config()
-    print_param1()
+    c = Config(env='DEVELOPMENT')
