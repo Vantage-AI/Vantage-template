@@ -1,12 +1,6 @@
 name: Vantage Template
 
-on:
-  pull_request:
-  push:
-    branches:
-      - master
-      - develop
-      - feature_github_actions
+on: [push, pull_request]
 
 jobs:
   build:
