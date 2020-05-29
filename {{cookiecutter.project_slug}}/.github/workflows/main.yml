@@ -21,7 +21,7 @@ jobs:
         python-version: 3.8
     - name: Make environment
       run: |
-        conda env create -f environment.yaml
+        conda env create -f environment.yml
     - name: Display packages
       run: |
         pip freeze
