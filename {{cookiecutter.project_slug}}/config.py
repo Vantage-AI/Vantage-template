@@ -43,7 +43,8 @@ class Config(metaclass=Singleton):
 
     def __init__(
         self,
-        config_path: str= "",
+        config_path: str = "./config.ini",
+        env: str = "DEVELOPMENT",
         param1 = None
     ):
         """
@@ -55,9 +56,8 @@ class Config(metaclass=Singleton):
             if os.path.isfile(config_path):
                 config = configparser.ConfigParser()
                 config.read(config_path)
-                for section in config.sections():
-                    for key in config[section]:
-                        setattr(self, key, ast.literal_eval(config[section][key]))
+                for key in config[env]:
+                    setattr(self, key, ast.literal_eval(config[env][key]))
 
         if param1:
             self.param1 = param1
