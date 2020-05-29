@@ -1,0 +1,21 @@
+name: Vantage Template
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Building project
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Make environment
+      run: |
+        conda env create -f environment.yaml
+    - name: Display packages
+      run: |
+        pip freeze
