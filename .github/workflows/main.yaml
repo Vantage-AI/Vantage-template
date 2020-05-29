@@ -1,5 +1,5 @@
 name: Vantage Template
-​
+
 on:
   pull_request:
   push:
@@ -7,7 +7,7 @@ on:
       - master
       - develop
       - feature_github_actions
-​
+
 jobs:
   build:
     name: Building project
@@ -26,18 +26,3 @@ jobs:
     - name: Show packages
       run: |
         pip freeze
-#    - name: Run pre-commit checks
-#      run: |
-#        pre-commit run --all-files
-#    - name: Lint code using pylint
-#      run: |
-#        make lint
-#    - name: Run tests using pytest
-#      run: |
-#        make test
-#    - name: Upload pytest test results
-#      uses: actions/upload-artifact@v2
-#      with:
-#        name: pytest-results
-#        path: |
-#          .junit/
