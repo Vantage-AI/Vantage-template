@@ -1,18 +1,19 @@
 import os
 import ast
-import sys
 import configparser
 from typing import Dict
 from dataclasses import dataclass
-from typing import Dict
 
 
 class Singleton(type):
+    """
+    Make sure that whenever a config object is initialized, we obtain the same instance.
+
+    Each of the following functions use cls instead of self to emphasize that although they are instance methods of
+    Singleton, they are also *class* methods of a class defined with Singleton
+    """
     __instances: Dict = {}
-    # Each of the following functions use cls instead of self
-    # to emphasize that although they are instance methods of
-    # Singleton, they are also *class* methods of a class defined
-    # with Singleton
+
     def __call__(cls, *args, **kwargs):
         if cls not in Singleton.__instances:
             Singleton.__instances[cls] = super().__call__(*args, **kwargs)
