@@ -34,7 +34,7 @@ class Config(metaclass=Singleton):
     """
     param1 : str
     param2 : int
-    project_path : str
+    data_path : str
 
     def __init__(
         self,
