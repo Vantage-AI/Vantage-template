@@ -44,7 +44,7 @@ class Config(metaclass=Singleton):
     def __init__(
         self,
         config_path: str = "./config.ini",
-        env: str = "DEVELOPMENT",
+        env: str = "PRODUCTION",
         param1 = None
     ):
         """
