@@ -35,6 +35,7 @@ class Config(metaclass=Singleton):
     param1 : str
     param2 : int
     project_path : str
+    data_folder: str
 
     def __post_init__(self):
         """
