@@ -3,26 +3,24 @@ import ast
 import sys
 import configparser
 from typing import Dict
-from datetime import datetime, timedelta
 from dataclasses import dataclass
 from typing import Dict
 
 
 class Singleton(type):
-    _instances: Dict = {}
-
+    __instances: Dict = {}
     # Each of the following functions use cls instead of self
     # to emphasize that although they are instance methods of
     # Singleton, they are also *class* methods of a class defined
     # with Singleton
     def __call__(cls, *args, **kwargs):
-        if cls not in Singleton._instances:
-            Singleton._instances[cls] = super().__call__(*args, **kwargs)
-        return Singleton._instances[cls]
+        if cls not in Singleton.__instances:
+            Singleton.__instances[cls] = super().__call__(*args, **kwargs)
+        return Singleton.__instances[cls]
 
     def clear(cls):
         try:
-            del Singleton._instances[cls]
+            del Singleton.__instances[cls]
         except KeyError:
             pass
 
