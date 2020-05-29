@@ -22,7 +22,7 @@ jobs:
     - name: Create instance of our own cookiecutter
       run: |
         pip install cookiecutter
-        cookiecutter https://github.com/Vantage-AI/vantage-template
+        cookiecutter https://github.com/Vantage-AI/vantage-template --no-input
     - name: Display packages
       run: |
         pip freeze
