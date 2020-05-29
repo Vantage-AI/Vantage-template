@@ -1,7 +1,8 @@
-name: example-environment
-
+name: {{cookiecutter.project_slug}}
+channels:
+  - conda-forge
 dependencies:
-  - python=3.4
+  - python=3.8
   - numpy
   - toolz
   - matplotlib
@@ -9,5 +10,5 @@ dependencies:
   - pandas
   - partd
   - bokeh
-  - pip:
-    - git+https://github.com/blaze/dask.git#egg=dask[complete]
+  # - pip:
+  #   - git+https://github.com/blaze/dask.git#egg=dask[complete]

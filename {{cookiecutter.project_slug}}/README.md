@@ -1,3 +1,2 @@
-# README file
-
+# {{cookiecutter.project_name}}
 
