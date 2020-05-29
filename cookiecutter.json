@@ -1,4 +1,6 @@
 {
   "project_name": "Vantage Template repo",
-  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}"
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "author_name": "Author",
+  "project_version": "0.0.1"
 }
