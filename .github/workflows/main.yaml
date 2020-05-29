@@ -1,0 +1,28 @@
+name: Vantage Template
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - develop
+      - feature_github_actions
+
+jobs:
+  build:
+    name: Building project
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Create instance of our own cookiecutter
+      run: |
+        pip install cookiecutter
+        cookiecutter https://github.com/Vantage-AI/vantage-template
+    - name: Display packages
+      run: |
+        pip freeze
