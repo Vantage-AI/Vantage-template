@@ -1,5 +1,5 @@
 # Vantage-Template Repo for Python Package
-A cookie cutter for creating a python project/
+A Cookiecutter for creating a python project.
 
 ## Usage
 
