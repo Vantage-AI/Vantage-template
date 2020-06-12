@@ -17,12 +17,12 @@ jobs:
       run: |
         pip install cookiecutter
         cookiecutter . --no-input
-    - name: Make environment
+    - name: Install dependencies
       run: |
         cd vantage_template_repo
-        conda env create -f environment.yaml
-        conda activate vantage_template_repo
-    - name: Install packages
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Install package
       run: |
         pip install -e .
     - name: Display packages
