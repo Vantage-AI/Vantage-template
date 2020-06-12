@@ -1,5 +1,3 @@
-# pre-commit
-exclude: ''
 repos:
 - repo: git://github.com/pre-commit/pre-commit-hooks
   rev: v2.3.0
@@ -9,5 +7,7 @@ repos:
       args: [--branch, master]
     - id: check-json
     - id: check-yaml
+    - id: flake8
+      additional_dependencies: [flake8-docstrings, pep8-naming]
 
 
