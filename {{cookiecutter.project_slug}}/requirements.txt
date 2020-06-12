@@ -1,0 +1,9 @@
+flake8==3.7.9
+flake8-docstrings==1.5.0
+numpy
+matplotlib
+pandas
+pep8-naming==0.9.1
+pre-commit==2.4.0
+scikit-learn
+seaborn
