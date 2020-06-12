@@ -4,12 +4,6 @@ channels:
   - defaults
 dependencies:
   - python=3.8
-  - jupyterlab
-  - nb_conda
-  - numpy
-  - pandas
-  - matplotlib
-  - seaborn
-  - scikit-learn
+  - pytest
   # - pip:
   #   - git+https://github.com/blaze/dask.git#egg=dask[complete]
