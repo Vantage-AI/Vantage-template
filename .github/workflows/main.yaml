@@ -16,7 +16,18 @@ jobs:
     - name: Create instance of our own cookiecutter
       run: |
         pip install cookiecutter
-        cookiecutter https://github.com/Vantage-AI/vantage-template --no-input
+        cookiecutter . --no-input
+    - name: Make environment
+      run: |
+        cd vantage_template_repo
+        conda env create -f environment.yaml
+        conda activate vantage_template_repo
+    - name: Install packages
+      run: |
+        pip install -e .
     - name: Display packages
       run: |
         pip freeze
+    - name: Run tests
+      run: |
+        pytest tests
