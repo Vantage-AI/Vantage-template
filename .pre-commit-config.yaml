@@ -13,7 +13,5 @@ repos:
     - id: check-merge-conflict
     - id: no-commit-to-branch
       args: [--branch, master]
-    - id: flake8
-      additional_dependencies: [flake8-docstrings, pep8-naming]
 
 
