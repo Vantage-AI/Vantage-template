@@ -19,13 +19,14 @@ jobs:
         cookiecutter . --no-input
     - name: Install dependencies
       run: |
-        cd vantage_template_repo
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -e .
+      working-directory: vantage_template_repo
     - name: Display packages
       run: |
         pip freeze
     - name: Run tests
       run: |
         pytest tests
+      working-directory: vantage_template_repo
