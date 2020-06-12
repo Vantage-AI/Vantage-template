@@ -1,7 +1,7 @@
-binary_trees
-============
+{{cookiecutter.package_name}}
+========================
 
 .. toctree::
    :maxdepth: 4
 
-   binary_trees
+   greet

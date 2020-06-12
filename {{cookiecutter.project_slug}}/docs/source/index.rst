@@ -1,10 +1,10 @@
-.. test1234 documentation master file, created by
-   sphinx-quickstart on Fri May 29 12:01:10 2020.
+.. {{cookiecutter.project_name}} documentation master file, created by
+   sphinx-quickstart on Fri Jun 12 11:48:02 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to test1234's documentation!
-====================================
+Welcome to {{cookiecutter.project_name}}'s documentation!
+====================================================
 
 .. toctree::
    :maxdepth: 2
