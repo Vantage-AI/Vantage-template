@@ -7,18 +7,27 @@
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install {{cookiecutter.project_name}}.
 
 ```bash
-pip install {{cookiecutter.project_name}}
+conda env create -f environment.yaml
+conda activate {{cookiecutter.project_slug}}
+pip install -e .
 ```
 
+
+{% if cookiecutter.example_code == 'true' %}
 ## Usage
 
 ```python
-import {{cookiecutter.project_name}}
+from {{cookiecutter.project_slug}}.example import say_hello
 
-{{cookiecutter.project_name}}.pluralize('word') # returns 'words'
-{{cookiecutter.project_name}}.pluralize('goose') # returns 'geese'
-{{cookiecutter.project_name}}.singularize('phenomena') # returns 'phenomenon'
+say_hello("Mike") # returns 'Hello, Mike!'
 ```
+{% endif %}
+## Tests
+You can do pytests with the following commands:
+```python
+pytest tests
+```
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

@@ -1,4 +1,8 @@
 {
   "project_name": "Vantage Template repo",
-  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}"
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "example_code": "true",
+  "author": "Vantage AI",
+  "email": "info@vantage-ai.com",
+  "project_short_description": "Short description of {{cookiecutter.project_name}}"
 }

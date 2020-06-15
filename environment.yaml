@@ -1,11 +1,9 @@
-name: {{cookiecutter.project_slug}}
+name: vantage-template
 channels:
   - conda-forge
   - defaults
 dependencies:
   - python=3.8
-  - jupyterlab
-  - nb_conda
   - pip
-  - pip:
+  - pip: 
     - -r file:requirements.txt
