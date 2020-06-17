@@ -43,10 +43,13 @@ class Config(metaclass=Singleton):
         Initialize configuration object. Configuration is read in from the path specified by the config_path
         argument.
         """
-
+        project_root = os.path.dirname(os.path.abspath(__file__))
+        print(project_root)
         if config_path:
             if os.path.isfile(config_path):
                 config = configparser.ConfigParser()
                 config.read(config_path)
                 for key in config[env]:
+                    if isinstance(config[env][key], str):
+                        config[env][key] = config[env][key].replace('${project_root}', project_root)
                     setattr(self, key, ast.literal_eval(config[env][key]))
