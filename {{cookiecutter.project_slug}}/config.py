@@ -1,7 +1,7 @@
 import os
 import ast
-import configparser
-from typing import Dict
+from  configparser import ConfigParser
+from typing import Dict, Any
 from dataclasses import dataclass
 
 
@@ -19,7 +19,7 @@ class Singleton(type):
             Singleton.__instances[cls] = super().__call__(*args, **kwargs)
         return Singleton.__instances[cls]
 
-    def clear(cls):
+    def clear(cls: Any) -> None:
         try:
             del Singleton.__instances[cls]
         except KeyError:
@@ -29,28 +29,56 @@ class Singleton(type):
 @dataclass
 class Config(metaclass=Singleton):
     """
-    Class which contains our configuration. Once initialized, it cannot be changed, as it is a singleton.
+    Class which contains our configuration. Once initialized, it cannot be created once more. Everytime it is
+    loaded, one receives the same instance, as it is a singleton.
     """
-    param1 : int
+    param : int
     data_path : str
+    project_root: str
 
     def __init__(
         self,
         env: str = "DEVELOPMENT",
         config_path: str = "./config.ini",
+        project_root: str = None
     ):
         """
         Initialize configuration object. Configuration is read in from the path specified by the config_path
         argument.
         """
-        
-        project_root = os.path.dirname(os.path.abspath(__file__))
-        
+        if project_root:
+            self.project_root = project_root
+        else:
+            self.project_root = os.path.dirname(os.path.abspath(__file__))
+
+        if not os.path.exists(self.project_root):
+            raise FileNotFoundError("The path given as project root does not exist")
+        if not os.path.isdir(self.project_root):
+            raise NotADirectoryError("The path given is not a directory, but a file path")
+
         if config_path:
             if os.path.isfile(config_path):
-                config = configparser.ConfigParser()
+                config = ConfigParser()
                 config.read(config_path)
+
+                env_keys = [key.rsplit('[')[0].strip() for key in config[env].keys()]
+                duplicate_keys = (set([x for x in env_keys if env_keys.count(x) > 1]))
+                defaults = list(config.defaults())
+
+                _ = [config.defaults().pop(key) for key in defaults if key.rsplit('[')[0].strip() in duplicate_keys]
+
                 for key in config[env]:
-                    if isinstance(config[env][key], str):
-                        config[env][key] = config[env][key].replace('${project_root}', project_root)
-                    setattr(self, key, ast.literal_eval(config[env][key]))
+                    if '[float]' in key or '[double]' in key:
+                        setattr(self, key.rsplit('[')[0].strip(), float(config[env][key]))
+                        continue
+                    if '[int]' in key:
+                        setattr(self, key.rsplit('[')[0].strip(), int(config[env][key]))
+                        continue
+                    if '[path]' in key:
+                        config[env][key] = config[env][key].replace('${project_root}', self.project_root)
+                    setattr(self, key.rsplit('[')[0].strip(), ast.literal_eval(config[env][key]))
+
+
+    def __str__(self) -> str:
+        return "\n".join([f"{key}: {value}" for key, value in self.__dict__.items()])
+
