@@ -77,7 +77,10 @@ class Config(metaclass=Singleton):
                     if '[path]' in key:
                         config[env][key] = config[env][key].replace('${project_root}', self.project_root)
                     setattr(self, key.rsplit('[')[0].strip(), ast.literal_eval(config[env][key]))
-
+            else:
+                raise FileNotFoundError(f'No config file at location {config_path} has been found')
+        else:
+            raise ValueError("Please provide a config path")
 
     def __str__(self) -> str:
         return "\n".join([f"{key}: {value}" for key, value in self.__dict__.items()])
