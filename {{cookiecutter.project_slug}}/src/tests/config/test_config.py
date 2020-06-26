@@ -70,7 +70,7 @@ def test_setting_not_existing_project_root() -> None:
 
 def test_setting_file_path_as_project_root() -> None:
     with pytest.raises(NotADirectoryError):
-        config = Config(project_root='tests/config/test_config.py')
+        config = Config(project_root='src/tests/config/test_config.py')
 
 
 
