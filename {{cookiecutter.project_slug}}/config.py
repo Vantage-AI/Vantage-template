@@ -43,8 +43,9 @@ class Config(metaclass=Singleton):
         Initialize configuration object. Configuration is read in from the path specified by the config_path
         argument.
         """
+        
         project_root = os.path.dirname(os.path.abspath(__file__))
-        print(project_root)
+        
         if config_path:
             if os.path.isfile(config_path):
                 config = configparser.ConfigParser()
