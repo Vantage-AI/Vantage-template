@@ -15,6 +15,9 @@ A cookie cutter for creating a python project.
 
 ## Documentation
 
+### Install all project requirements
+conda env create --file environment.yml
+
 ### Generating updated documentation
 
 Documentation is automatically generated using [Sphinx][2]. After adding new files to your package, be sure to run the following commands to generate updated documentation:
