@@ -16,7 +16,9 @@ A cookie cutter for creating a python project.
 ## Documentation
 
 ### Install all project requirements
-conda env create --file environment.yml
+
+    pip install -r requirements.txt
+
 
 ### Generating updated documentation
 
