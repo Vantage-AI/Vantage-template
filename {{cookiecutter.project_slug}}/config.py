@@ -1,13 +1,14 @@
+"""Module to create global configuration class."""
+
 import os
 import ast
-from  configparser import ConfigParser
+from configparser import ConfigParser
 from typing import Dict, Any
 from dataclasses import dataclass
 
 
 class Singleton(type):
-    """
-    Make sure that whenever a config object is initialized, we obtain the same instance.
+    """Make sure that whenever a config object is initialized, we obtain the same instance.
 
     Each of the following functions use cls instead of self to emphasize that although they are instance methods of
     Singleton, they are also *class* methods of a class defined with Singleton
@@ -15,11 +16,13 @@ class Singleton(type):
     __instances: Dict = {}
 
     def __call__(cls, *args, **kwargs):
+        """Get instance of singleton."""
         if cls not in Singleton.__instances:
             Singleton.__instances[cls] = super().__call__(*args, **kwargs)
         return Singleton.__instances[cls]
 
     def clear(cls: Any) -> None:
+        """Remove all singletons."""
         try:
             del Singleton.__instances[cls]
         except KeyError:
@@ -28,12 +31,12 @@ class Singleton(type):
 
 @dataclass
 class Config(metaclass=Singleton):
+    """Class which contains our configuration.
+
+    Can only be initialized once. Everytime it is loaded, one receives the same instance, as it is a singleton.
     """
-    Class which contains our configuration. Once initialized, it cannot be created once more. Everytime it is
-    loaded, one receives the same instance, as it is a singleton.
-    """
-    param : int
-    data_path : str
+    param: int
+    data_path: str
     project_root: str
 
     def __init__(
@@ -42,10 +45,7 @@ class Config(metaclass=Singleton):
         config_path: str = "./config.ini",
         project_root: str = None
     ):
-        """
-        Initialize configuration object. Configuration is read in from the path specified by the config_path
-        argument.
-        """
+        """Configuration is read in from the path specified by the config_path argument."""
         if project_root:
             self.project_root = project_root
         else:
@@ -83,5 +83,5 @@ class Config(metaclass=Singleton):
             raise ValueError("Please provide a config path")
 
     def __str__(self) -> str:
+        """Return string representation."""
         return "\n".join([f"{key}: {value}" for key, value in self.__dict__.items()])
-
