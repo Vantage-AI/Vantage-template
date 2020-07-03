@@ -26,6 +26,9 @@ jobs:
     - name: Display packages
       run: |
         python -m pip freeze
+    - name: show folders
+      run: |
+        ls
     - name: Run tests
       run: |
         python -m pytest src/tests

@@ -41,12 +41,40 @@ def logging_levels():
     # default level is warning.
     logger.setLevel(logging.DEBUG)
 
-    # je kan zelf levels toevoegen, hoe dan?
-    logging.addLevelName(25, 'STAGE')
+    # adding a level takes several steps, see add_logging_level()
+    add_logging_level('STAGE', 25)
     logger.setLevel(logging.STAGE)
-    logger.log(26, 'Message in new logging level')
+    logger.stage('Message in new logging level')
 
     return dic["critical"]
+
+
+def add_logging_level(level_name, level_num):
+    """Adds a new logging level to the `logging` module and the currently configured logging class.
+
+    `levelName` becomes an attribute of the `logging` module with the value `levelNum`. `methodName` becomes a
+    convenience method for both `logging` itself and the class returned by `logging.getLoggerClass()`.
+    """
+    method_name = level_name.lower()
+
+    if hasattr(logging, level_name):
+        raise AttributeError('{} already defined in logging module'.format(level_name))
+    if hasattr(logging, method_name):
+        raise AttributeError('{} already defined in logging module'.format(method_name))
+    if hasattr(logging.getLoggerClass(), method_name):
+        raise AttributeError('{} already defined in logger class'.format(method_name))
+
+    def log_for_level(self, message, *args, **kwargs):
+        if self.isEnabledFor(level_num):
+            self._log(level_num, message, args, **kwargs)
+
+    def log_to_root(message, *args, **kwargs):
+        logging.log(level_num, message, *args, **kwargs)
+
+    logging.addLevelName(level_num, level_name)
+    setattr(logging, level_name, level_num)
+    setattr(logging.getLoggerClass(), method_name, log_for_level)
+    setattr(logging, method_name, log_to_root)
 
 
 def log_exceptions():
