@@ -84,8 +84,7 @@ class Config(BaseConfig, metaclass=Singleton):
         self,
         env: str = "DEVELOPMENT",
         config_path: str = "./config.ini",
-        project_root: str = None
-    ):
+        project_root: str = None):
         """
         Initialize configuration object. Configuration is read in from the path specified by the config_path
         argument.
