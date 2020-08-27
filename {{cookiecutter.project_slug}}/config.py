@@ -25,29 +25,9 @@ class Singleton(type):
         except KeyError:
             pass
 
+class BaseConfig:
+    def __init__(self, env, config_path, project_root):
 
-@dataclass
-class Config(metaclass=Singleton):
-    """
-    Class which contains our configuration. Once initialized, it cannot be created once more. Everytime it is
-    loaded, one receives the same instance, as it is a singleton.
-    """
-    param : int
-    data_path : str
-    project_root: str
-    my_list: List[str]
-
-
-    def __init__(
-        self,
-        env: str = "DEVELOPMENT",
-        config_path: str = "./config.ini",
-        project_root: str = None
-    ):
-        """
-        Initialize configuration object. Configuration is read in from the path specified by the config_path
-        argument.
-        """
         if project_root:
             self.project_root = project_root
         else:
@@ -87,3 +67,27 @@ class Config(metaclass=Singleton):
     def __str__(self) -> str:
         return "\n".join([f"{key}: {value}" for key, value in self.__dict__.items()])
 
+
+@dataclass
+class Config(BaseConfig, metaclass=Singleton):
+    """
+    Class which contains our configuration. Once initialized, it cannot be created once more. Everytime it is
+    loaded, one receives the same instance, as it is a singleton.
+    """
+    param : int
+    data_path : str
+    project_root: str
+    my_list: List[str]
+    my_second_list: List[int]
+
+    def __init__(
+        self,
+        env: str = "DEVELOPMENT",
+        config_path: str = "./config.ini",
+        project_root: str = None
+    ):
+        """
+        Initialize configuration object. Configuration is read in from the path specified by the config_path
+        argument.
+        """
+        super().__init__(env, config_path, project_root)
