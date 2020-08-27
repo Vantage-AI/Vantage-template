@@ -1,7 +1,7 @@
 import os
 import ast
 from  configparser import ConfigParser
-from typing import Dict, Any
+from typing import Dict, Any, List
 from dataclasses import dataclass
 
 
@@ -35,6 +35,8 @@ class Config(metaclass=Singleton):
     param : int
     data_path : str
     project_root: str
+    my_list: List[str]
+
 
     def __init__(
         self,
